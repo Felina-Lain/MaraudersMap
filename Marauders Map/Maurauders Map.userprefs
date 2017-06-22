@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Room.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Room.cs" Line="46" Column="4" />
+      <File FileName="Assets\Scripts\Character.cs" Line="24" Column="17" />
+      <File FileName="Assets\Scripts\Manager.cs" Line="54" Column="41" />
+      <File FileName="..\..\Documents\SourceTree\New-This-City\New_This_City\Assets\Script\EventsManagement\TCEventData.cs" Line="49" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

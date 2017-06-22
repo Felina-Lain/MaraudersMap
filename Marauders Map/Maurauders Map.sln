@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maurauders Map", "Assembly-CSharp.csproj", "{3119BEAB-D2CA-F5CF-3FF3-2B87A6BB297A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maurauders Map", "Assembly-CSharp-Editor.csproj", "{57664CFD-4023-BFC4-CEB9-89C35FF6897E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3119BEAB-D2CA-F5CF-3FF3-2B87A6BB297A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3119BEAB-D2CA-F5CF-3FF3-2B87A6BB297A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3119BEAB-D2CA-F5CF-3FF3-2B87A6BB297A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3119BEAB-D2CA-F5CF-3FF3-2B87A6BB297A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57664CFD-4023-BFC4-CEB9-89C35FF6897E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57664CFD-4023-BFC4-CEB9-89C35FF6897E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57664CFD-4023-BFC4-CEB9-89C35FF6897E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57664CFD-4023-BFC4-CEB9-89C35FF6897E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
