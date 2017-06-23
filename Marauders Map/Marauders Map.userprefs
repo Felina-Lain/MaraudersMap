@@ -2,9 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Room.cs">
     <Files>
-      <File FileName="Assets\Scripts\Character.cs" Line="19" Column="24" />
-      <File FileName="Assets\Scripts\Room.cs" Line="76" Column="4" />
-      <File FileName="Assets\Simple Graph Editor\Demo Scenes\Scripts\findPath.cs" Line="34" Column="48" />
+      <File FileName="Assets\Scripts\Room.cs" Line="157" Column="129" />
+      <File FileName="Assets\Scripts\Character.cs" Line="15" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

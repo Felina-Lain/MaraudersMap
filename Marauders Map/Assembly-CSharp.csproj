@@ -49,14 +49,6 @@
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
      <Compile Include="Assets\Scripts\Room.cs" />
-     <Compile Include="Assets\Simple Graph Editor\Demo Scenes\Scripts\findPath.cs" />
-     <Compile Include="Assets\Simple Graph Editor\Demo Scenes\Scripts\predefinedPath.cs" />
-     <Compile Include="Assets\Simple Graph Editor\Demo Scenes\Scripts\randomPath.cs" />
-     <Compile Include="Assets\Simple Graph Editor\Scripts\DrawArrow.cs" />
-     <Compile Include="Assets\Simple Graph Editor\Scripts\ReadOnlyAttribute.cs" />
-     <Compile Include="Assets\Simple Graph Editor\Scripts\WayPoint.cs" />
-     <Compile Include="Assets\Simple Graph Editor\Scripts\WaypointCluster.cs" />
-     <None Include="Assets\Simple Graph Editor\README.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity5.6/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

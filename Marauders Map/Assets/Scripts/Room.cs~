@@ -7,8 +7,11 @@ public enum RoomType
 {
 
 	Classroom = -1,
-	HouseRoom = 0,
-	Secret = 1
+	Secret = 0,
+	HouseRoomGryffindor = 1,
+	HouseRoomSlytherin = 2,
+	HouseRoomRavenclaw = 3,
+	HouseRoomHufflepuff = 4
 
 }
 
@@ -17,75 +20,148 @@ public class Room : MonoBehaviour {
 
 	public RoomType room_type;
 
-	[SerializeField]
-	List<Character> students_inside = new List<Character>();
+	public List<Character> students_inside = new List<Character>();
 
 	[Header("Class and Lessons")]
 	public float class_time_max;
-	public float in_between_time_max;
+	public float non_class_time_max;
 	public float students_inside_max;
 	[SerializeField]
-	bool teacher_inside;
+	bool class_in_session;
 
 	[Header("Countdown check")]
 	[SerializeField]
 	float class_time;
 	[SerializeField]
-	float in_between_time;
+	float non_class_time;
 
 	// Use this for initialization
 	void Start () {
-		in_between_time = in_between_time_max;
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+		switch(room_type){
+
+		case RoomType.Classroom: 
+			
+
+			break;
+		case RoomType.HouseRoomGryffindor:
+			
+
+			break;
+		case RoomType.HouseRoomSlytherin:
+
+
+			break;
+		case RoomType.HouseRoomRavenclaw:
+
+
+			break;
+		case RoomType.HouseRoomHufflepuff:
+
+
+			break;
+		case RoomType.Secret:
+			
+
+			break;
+		
+		default:
+			break;
+		}
+
 
 		
 	}
 
 
-	void ClassInSession(){
+	void EventOver(){
 
-		class_time -= Time.deltaTime;
-
-		
-	}
-
-	void ClassOver(){
-
-		in_between_time -= Time.deltaTime;
 
 		//give each students in the classroom a new destination
 		for (int i = 0; i < students_inside.Count; i++) {
 
-			students_inside [i].transform.GetComponent<findPath>().start = this.transform.GetComponent<WayPoint>();
-			students_inside [i].transform.GetComponent<findPath>().end = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform.GetComponent<WayPoint>();
+			//new target
+			students_inside [i].transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
 
 		}
+
+		students_inside.Clear();
 
 	}
 
+	public void AddStudent(Character _toadd){
 
-	public void LaunchEvent(){
+		if(room_type == RoomType.Classroom && students_inside.Count < students_inside_max){
 
-		//if this is a classroom
-		if (room_type == RoomType.Classroom) {
+			students_inside.Add(_toadd);
+
+
+		}
+
+
+		else if (room_type == RoomType.HouseRoomGryffindor){
+
+			if(_toadd.rank_type == Rank.StudentGryffindor){
+
+				students_inside.Add(_toadd);
+				
+			}else {
+
+				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
+				
+			}
+
+
+		}
+		else if (room_type == RoomType.HouseRoomSlytherin){
+
+			if(_toadd.rank_type == Rank.StudentSlytherin){
+
+				students_inside.Add(_toadd);
+
+			}else {
+
+				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
+
+			}
+
+
+		}
+		else if (room_type == RoomType.HouseRoomRavenclaw){
+
+			if(_toadd.rank_type == Rank.StudentRavenclaw){
+
+				students_inside.Add(_toadd);
+
+			}else {
+
+				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
+
+			}
+
+
+		}
+		else if (room_type == RoomType.HouseRoomHufflepuff){
+
+			if(_toadd.rank_type == Rank.StudentHufflepuff){
+
+				students_inside.Add(_toadd);
+
+			}else {
+
+				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
+
+			}
 
 
 		}
 
-		//if it's a house
-		else if(room_type == RoomType.HouseRoom){
-		
-
-		}
-
-		//if it's a secret
-		else if(room_type == RoomType.Secret){
-			
-		}
 
 	}
+
 }
