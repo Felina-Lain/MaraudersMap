@@ -8,10 +8,10 @@ public enum RoomType
 
 	Classroom = -1,
 	Secret = 0,
-	HouseRoomGryffindor = 1,
-	HouseRoomSlytherin = 2,
-	HouseRoomRavenclaw = 3,
-	HouseRoomHufflepuff = 4
+	Gryffindor = 1,
+	Slytherin = 2,
+	Ravenclaw = 3,
+	Hufflepuff = 4
 
 }
 
@@ -49,19 +49,19 @@ public class Room : MonoBehaviour {
 			
 
 			break;
-		case RoomType.HouseRoomGryffindor:
+		case RoomType.Gryffindor:
 			
 
 			break;
-		case RoomType.HouseRoomSlytherin:
+		case RoomType.Slytherin:
 
 
 			break;
-		case RoomType.HouseRoomRavenclaw:
+		case RoomType.Ravenclaw:
 
 
 			break;
-		case RoomType.HouseRoomHufflepuff:
+		case RoomType.Hufflepuff:
 
 
 			break;
@@ -96,72 +96,33 @@ public class Room : MonoBehaviour {
 
 	public void AddStudent(Character _toadd){
 
+		//if it's a classroom and the max number of students isn't reached
 		if(room_type == RoomType.Classroom && students_inside.Count < students_inside_max){
 
+			//add the student to this room list
 			students_inside.Add(_toadd);
 
-
 		}
 
+		//if it's a house room and the student is from that house
+		print("room " + (int)room_type);
+		print("stud " + (int)_toadd.rank_type);
 
-		else if (room_type == RoomType.HouseRoomGryffindor){
+		if ((int)room_type == (int)_toadd.rank_type){
 
-			if(_toadd.rank_type == Rank.StudentGryffindor){
+			//add the student to this room list
+			students_inside.Add(_toadd);
 
-				students_inside.Add(_toadd);
-				
-			}else {
+		}else {
 
-				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
-				
+			//else give it a new random destination while excluding this room
+			Transform new_target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
+			if(new_target != this.transform){
+				_toadd.transform.GetComponent<Character>().target = new_target;
+			}else{
+				new_target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
+				} 				
 			}
 
-
 		}
-		else if (room_type == RoomType.HouseRoomSlytherin){
-
-			if(_toadd.rank_type == Rank.StudentSlytherin){
-
-				students_inside.Add(_toadd);
-
-			}else {
-
-				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
-
-			}
-
-
-		}
-		else if (room_type == RoomType.HouseRoomRavenclaw){
-
-			if(_toadd.rank_type == Rank.StudentRavenclaw){
-
-				students_inside.Add(_toadd);
-
-			}else {
-
-				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
-
-			}
-
-
-		}
-		else if (room_type == RoomType.HouseRoomHufflepuff){
-
-			if(_toadd.rank_type == Rank.StudentHufflepuff){
-
-				students_inside.Add(_toadd);
-
-			}else {
-
-				_toadd.transform.GetComponent<Character>().target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
-
-			}
-
-
-		}
-
-
-	}
-
 }

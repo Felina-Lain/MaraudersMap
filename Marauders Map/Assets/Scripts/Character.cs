@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 
 public enum Rank
 {
 
 	Ghost = -1,
 	Teacher = 0,
-	StudentGryffindor = 1,
-	StudentSlytherin = 2,
-	StudentRavenclaw = 3,
-	StudentHufflepuff = 4
+	Gryffindor = 1,
+	Slytherin = 2,
+	Ravenclaw = 3,
+	Hufflepuff = 4
 
 }
 
@@ -22,14 +22,11 @@ public class Character : MonoBehaviour {
 
 	[Header("Where this character go")]
 	public Transform target;
-	public float speed;
-
-
 
 	[Header("Random moving around")]
 	public float wanderRadius;
-	public float wanderTimer;
-
+	public float wanderTimerMin;
+	public float wanderTimerMax;
 
 	//to navigate the random moving
 	Transform randomNavtarget;
@@ -37,24 +34,26 @@ public class Character : MonoBehaviour {
 	float timer;
 	int attitude;
 
-	// Use this for initialization
+
 	void Start () {
 
-		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
-		timer = wanderTimer;
+		//get the navmesh
+		agent = GetComponent<NavMeshAgent> ();
+
+		//set a first random timer for random wandering
+		timer = Random.Range(wanderTimerMin,wanderTimerMax);
 		
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
 
-		agent.speed = speed;
-
+		//if we have a target we go to it
 		if(target != null){
 			GoingTo();
 		}
 
-
+		//when we reach the target we do one of those two things
 		switch(attitude){
 
 		case 1:
@@ -72,35 +71,48 @@ public class Character : MonoBehaviour {
 		
 	}
 
+
+	/// <summary>
+	/// Walkings  around at random.
+	/// </summary>
 	void WalkingAroundRandom(){
 
-		// Update is called once per frame
+		//for duration of timer
+			timer -= Time.deltaTime;
 
-			timer += Time.deltaTime;
-
-			if (timer >= wanderTimer) {
+		//when timer is over
+			if (timer <= 0) {
+			//new position to go to
 				Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
 				agent.SetDestination(newPos);
-				timer = 0;
+			//new random timer
+				timer = Random.Range(wanderTimerMin,wanderTimerMax);
 			}
 
 	}
 
-
+	/// <summary>
+	/// Goings to the main target.
+	/// </summary>
 	void GoingTo(){
 
+		//check the distance between character and target
 		float distance = Vector3.Distance(this.transform.position, target.transform.position);
 
-		//Move the square towards the current target
+		//Move the character towards the current target
 		agent.SetDestination(target.position);
 
 
-		//In case the square arrived to the target waypoint (very small distance)
+		//In case the character arrived to the target waypoint (very small distance) and take in account the distance to ground
 		if ((distance - this.transform.position.y) <= 0.1f){
-			
+
+			//add the student to the room list
 			target.GetComponent<Room>().AddStudent(this);
 
+			//empty the target
 			target = null;
+
+			//do one of the two attitude
 			//random range min inclusive, max exclusive
 			attitude = Random.Range(1,3);
 		}
@@ -108,6 +120,14 @@ public class Character : MonoBehaviour {
 	}
 
 
+	//found on the internet, determinate the random next position to go to
+	/// <summary>
+	/// Randoms the nav sphere.
+	/// </summary>
+	/// <returns>The nav sphere.</returns>
+	/// <param name="origin">Origin.</param>
+	/// <param name="dist">Dist.</param>
+	/// <param name="layermask">Layermask.</param>
 	public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
 		Vector3 randDirection = Random.insideUnitSphere * dist;
 
