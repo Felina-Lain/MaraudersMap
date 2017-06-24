@@ -32,7 +32,7 @@ public class Character : MonoBehaviour {
 	Transform randomNavtarget;
 	UnityEngine.AI.NavMeshAgent agent;
 	float timer;
-	int attitude;
+	public int attitude;
 
 
 	void Start () {
@@ -108,13 +108,7 @@ public class Character : MonoBehaviour {
 
 			//add the student to the room list
 			target.GetComponent<Room>().AddStudent(this);
-
-			//empty the target
-			target = null;
-
-			//do one of the two attitude
-			//random range min inclusive, max exclusive
-			attitude = Random.Range(1,3);
+		
 		}
 
 	}

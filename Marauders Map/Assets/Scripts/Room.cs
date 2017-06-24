@@ -35,8 +35,14 @@ public class Room : MonoBehaviour {
 	[SerializeField]
 	float non_class_time;
 
+	//create a temporary list to store all rooms except this one
+	List<Room> tmp_list = Manager.all_rooms;
+
 	// Use this for initialization
 	void Start () {
+
+		//remove this room from list
+		tmp_list.Remove (this);
 		
 	}
 	
@@ -97,32 +103,38 @@ public class Room : MonoBehaviour {
 	public void AddStudent(Character _toadd){
 
 		//if it's a classroom and the max number of students isn't reached
-		if(room_type == RoomType.Classroom && students_inside.Count < students_inside_max){
+		if (room_type == RoomType.Classroom && students_inside.Count <= students_inside_max) {
 
 			//add the student to this room list
-			students_inside.Add(_toadd);
+			students_inside.Add (_toadd);
+			//remove the student target
+			_toadd.transform.GetComponent<Character> ().target = null;
+			//do one of the two attitude for the student
+			//random range min inclusive, max exclusive
+			_toadd.transform.GetComponent<Character> ().attitude = Random.Range (1, 3);
 
 		}
 
 		//if it's a house room and the student is from that house
-		print("room " + (int)room_type);
-		print("stud " + (int)_toadd.rank_type);
+		if (room_type != RoomType.Classroom || room_type != RoomType.Secret) {
+			if ((int)room_type == (int)_toadd.rank_type) {
 
-		if ((int)room_type == (int)_toadd.rank_type){
+				print ("entered the room");
+				//add the student to this room list
+				students_inside.Add (_toadd);
 
-			//add the student to this room list
-			students_inside.Add(_toadd);
+			} else {
 
-		}else {
+				//else give it a new random destination while excluding this room
+				//cancel the current attitude
+				_toadd.transform.GetComponent<Character> ().attitude = 0;
+				//change the target
+				_toadd.transform.GetComponent<Character> ().target = tmp_list [Random.Range (0, tmp_list.Count)].transform;
 
-			//else give it a new random destination while excluding this room
-			Transform new_target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
-			if(new_target != this.transform){
-				_toadd.transform.GetComponent<Character>().target = new_target;
-			}else{
-				new_target = Manager.all_rooms [Random.Range (0, Manager.all_rooms.Count)].transform;
-				} 				
+				print ("leaving to " + _toadd.transform.GetComponent<Character> ().target);
+										
 			}
 
 		}
+	}
 }

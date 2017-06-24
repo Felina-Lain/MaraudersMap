@@ -320,6 +320,11 @@ Prefab:
       propertyPath: room_type
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114456868921123672, guid: 2302b9e26ce4d7447886aa2ccb4d5045,
+        type: 2}
+      propertyPath: students_inside_max
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2302b9e26ce4d7447886aa2ccb4d5045, type: 2}
   m_IsPrefabParent: 0
@@ -2175,7 +2180,7 @@ MonoBehaviour:
   all_rooms_check: []
   student_total: 1
   teachers_total: 0
-  ghost_total: 1
+  ghost_total: 0
   student_prefab: {fileID: 1134293248677548, guid: 6d424c39baf20c24fbd974a4e8274174,
     type: 2}
   teacher_prefab: {fileID: 1134293248677548, guid: b2d5c1102b9dd3a448726def3b108260,
